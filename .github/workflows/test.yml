@@ -1,0 +1,45 @@
+# Copyright (c) 2025 Boston Dynamics AI Institute LLC. All rights reserved.
+
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on:
+      group: bdai-gh-large-runners
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    strategy:
+      fail-fast: false
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v5
+
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: "3.10"
+
+    - name: Install pixi
+      uses: prefix-dev/setup-pixi@v0.9.0
+      with:
+        pixi-version: v0.55.0
+        cache: true
+        auth-host: prefix.dev
+        auth-token: ${{ secrets.PREFIX_DEV_TOKEN }}
+
+    - name: Build
+      run: |
+        pixi install
+        pixi install
