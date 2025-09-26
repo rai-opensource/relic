@@ -200,8 +200,8 @@ class EventCfg:
         mode="startup",
         params={
             "asset_cfg": SceneEntityCfg("robot", body_names=".*"),
-            "static_friction_range": (0.8, 0.8),
-            "dynamic_friction_range": (0.6, 0.6),
+            "static_friction_range": (0.3, 1.0),
+            "dynamic_friction_range": (0.3, 0.8),
             "restitution_range": (0.0, 0.0),
             "num_buckets": 64,
         },
@@ -222,7 +222,7 @@ class EventCfg:
         mode="startup",
         params={
             "asset_cfg": SceneEntityCfg("robot", body_names="arm_link_sh0"),
-            "mass_distribution_params": (-0.5, 1.0),
+            "mass_distribution_params": (-0.5, 0.5),
             "operation": "add",
         },
     )
@@ -266,8 +266,8 @@ class EventCfg:
         interval_range_s=(7.0, 10.0),
         params={
             "asset_cfg": SceneEntityCfg("robot"),
-            "force_range": (-10.0, 10.0),
-            "torque_range": (-3.0, 3.0),
+            "force_range": (-5.0, 5.0),
+            "torque_range": (-2.0, 2.0),
         },
     )
 
@@ -313,46 +313,13 @@ class RewardsCfg:
         weight=-3.5,
         params={"command_name": "arm_leg_joint_base_pose"},
     )
-    # track_base_orientation_exp = RewTerm(
-    #     func=mdp.track_base_orientation_exp,
-    #     weight=1.0,
-    #     params={"command_name": "arm_leg_joint_base_pose", "std": 0.1},
-    # )
-    # track_base_height_exp = RewTerm(
-    #     func=mdp.track_base_height_exp,
-    #     weight=1.0,
-    #     params={"command_name": "arm_leg_joint_base_pose", "std": 0.02},
-    # )
 
-    # -- penalties
-    lin_vel_z_l2 = RewTerm(func=isaac_mdp.lin_vel_z_l2, weight=-0.0)
-    ang_vel_xy_l2 = RewTerm(func=isaac_mdp.ang_vel_xy_l2, weight=-0.0)
-
-    # dof_torques_l2 = RewTerm(func=mdp.joint_torques_l2, weight=-5.0e-04)
-    # dof_acc_l2 = RewTerm(func=mdp.joint_acc_l2, weight=-7.5e-7)
-    dof_torques_l2 = RewTerm(
-        func=mdp.adaptive_joint_torques_l2,
-        weight=1.0,
-        params={
-            "command_name": "arm_leg_joint_base_pose",
-            "no_leg_ctl_weight": -5.0e-4,
-            "leg_ctl_weight": -5.0e-5,
-        },
-    )
-    dof_acc_l2 = RewTerm(
-        func=mdp.adaptive_joint_acc_l2,
-        weight=1.0,
-        params={
-            "command_name": "arm_leg_joint_base_pose",
-            "no_leg_ctl_weight": -2.0e-6,
-            "leg_ctl_weight": -7.5e-7,
-        },
-    )
-
-    action_rate_l2 = RewTerm(func=isaac_mdp.action_rate_l2, weight=-0.1)
+    dof_torques_l2 = RewTerm(func=isaac_mdp.joint_torques_l2, weight=-1.0e-05)
+    dof_acc_l2 = RewTerm(func=isaac_mdp.joint_acc_l2, weight=-2.5e-7)
+    action_rate_l2 = RewTerm(func=isaac_mdp.action_rate_l2, weight=-0.01)
     dof_torque_limits_l2 = RewTerm(
         func=mdp.dof_torque_limits_l2,
-        weight=-5.0,
+        weight=0.0,
         params={
             "asset_cfg": SceneEntityCfg("robot", joint_names="[fh].*"),
         },
@@ -372,7 +339,7 @@ class RewardsCfg:
     )
     three_leg_gait = RewTerm(
         func=mdp.ThreeLegGaitReward,
-        weight=5.0,
+        weight=0.0,
         params={
             "std": 0.1,
             "max_err": 0.2,
@@ -385,38 +352,23 @@ class RewardsCfg:
         },
     )
 
-    # feet_air_time_target = RewTerm(
-    #     func=mdp.feet_air_time_target,
-    #     weight=50.0,
-    #     params={
-    #         "sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_foot"),
-    #         "command_name": "base_velocity",
-    #         "four_leg_target_time": 1.8 / 2,
-    #         "three_leg_target_time": 1.8 / 3,
-    #         "contact_std": 0.14,
-    #         "air_std": 0.07,
-    #         "std": 0.105,
-    #         "cycle_time": 1.8,
-    #     },
-    # )
-    # feet_air_time_target = RewTerm(
-    #     func=mdp.air_time_reward,
-    #     weight=0.5,
-    #     params={
-    #         "mode_time": 1 / 3,
-    #         "velocity_threshold": 0.5,
-    #         "asset_cfg": SceneEntityCfg("robot"),
-    #         "sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_foot"),
-    #     },
-    # )
     feet_air_time_target = RewTerm(
         func=mdp.adaptive_air_time_reward,
-        weight=0.5,
+        weight=0.0,
         params={
             "four_leg_cycle_time": 0.6,
-            "three_leg_cycle_time": 0.4,
+            "three_leg_cycle_time": 0.5,
             "velocity_threshold": 0.5,
             "asset_cfg": SceneEntityCfg("robot"),
+            "sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_foot"),
+        },
+    )
+    feet_air_time = RewTerm(
+        func=isaac_mdp.feet_air_time,
+        weight=0.01,
+        params={
+            "command_name": "base_velocity",
+            "threshold": 0.5,
             "sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_foot"),
         },
     )
@@ -432,13 +384,13 @@ class RewardsCfg:
     )
     air_time_variance = RewTerm(
         func=mdp.air_time_variance_penalty,
-        weight=0.0,
+        weight=-10.0,
         params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_foot")},
     )
 
     flight_penalty = RewTerm(
         func=mdp.three_leg_flight_phase,
-        weight=-10.0,
+        weight=-5.0,
         params={
             "sensor_cfg": SceneEntityCfg(
                 "contact_forces",
@@ -458,7 +410,7 @@ class RewardsCfg:
     )
     foot_clearance = RewTerm(
         func=mdp.foot_clearance_reward,
-        weight=1.0,
+        weight=0.0,
         params={
             "std": math.sqrt(0.05),
             "tanh_mult": 2.0,
@@ -468,7 +420,7 @@ class RewardsCfg:
     )
     foot_slip = RewTerm(
         func=mdp.foot_slip_penalty,
-        weight=-2.0,
+        weight=-0.5,
         params={
             "asset_cfg": SceneEntityCfg("robot", body_names=".*_foot"),
             "sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_foot"),

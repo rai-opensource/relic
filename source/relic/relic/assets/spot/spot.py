@@ -65,8 +65,8 @@ SPOT_ARM_CFG = ArticulationCfg(
             effort_limit=HIP_EFFORT_LIMIT,
             stiffness=HIP_STIFFNESS,
             damping=HIP_DAMPING,
-            min_delay=1,  # physics time steps (min: 5.0*1=5.0ms)
-            max_delay=2,  # physics time steps (max: 5.0*2=10.0ms)
+            min_delay=0,  # physics time steps (min: 5.0*1=5.0ms)
+            max_delay=3,  # physics time steps (max: 5.0*2=10.0ms)
         ),
         "spot_knee": SpotKneeActuatorCfg(
             joint_names_expr=[".*_kn"],
@@ -74,8 +74,8 @@ SPOT_ARM_CFG = ArticulationCfg(
             effort_limit=None,  # torque limits are handled based experimental data
             stiffness=KNEE_STIFFNESS,
             damping=KNEE_DAMPING,
-            min_delay=1,  # physics time steps (min: 5.0*1=5.0ms)
-            max_delay=2,  # physics time steps (max: 5.0*2=10.0ms)
+            min_delay=0,  # physics time steps (min: 5.0*1=5.0ms)
+            max_delay=3,  # physics time steps (max: 5.0*2=10.0ms)
             enable_torque_speed_limit=True,
         ),
         "spot_arm_sh0": DelayedPDActuatorCfg(
@@ -84,8 +84,8 @@ SPOT_ARM_CFG = ArticulationCfg(
             stiffness=ARM_STIFFNESS[0],
             damping=ARM_DAMPING[0],
             armature=ARM_ARMATURE[0],
-            min_delay=1,  # physics time steps (min: 5.0*1=5.0ms)
-            max_delay=2,  # physics time steps (max: 5.0*2=10.0ms)
+            min_delay=0,  # physics time steps (min: 5.0*1=5.0ms)
+            max_delay=3,  # physics time steps (max: 5.0*2=10.0ms)
         ),
         "spot_arm_sh1": DelayedPDActuatorCfg(
             joint_names_expr=["arm_sh1"],
@@ -93,8 +93,8 @@ SPOT_ARM_CFG = ArticulationCfg(
             stiffness=ARM_STIFFNESS[1],
             damping=ARM_DAMPING[1],
             armature=ARM_ARMATURE[1],
-            min_delay=1,  # physics time steps (min: 5.0*1=5.0ms)
-            max_delay=2,  # physics time steps (max: 5.0*2=10.0ms)
+            min_delay=0,  # physics time steps (min: 5.0*1=5.0ms)
+            max_delay=3,  # physics time steps (max: 5.0*2=10.0ms)
         ),
         "spot_arm_el0": DelayedPDActuatorCfg(
             joint_names_expr=["arm_el0"],
@@ -102,8 +102,8 @@ SPOT_ARM_CFG = ArticulationCfg(
             stiffness=ARM_STIFFNESS[2],
             damping=ARM_DAMPING[2],
             armature=ARM_ARMATURE[2],
-            min_delay=1,  # physics time steps (min: 5.0*1=5.0ms)
-            max_delay=2,  # physics time steps (max: 5.0*2=10.0ms)
+            min_delay=0,  # physics time steps (min: 5.0*1=5.0ms)
+            max_delay=3,  # physics time steps (max: 5.0*2=10.0ms)
         ),
         "spot_arm_el1": DelayedPDActuatorCfg(
             joint_names_expr=["arm_el1"],
@@ -111,8 +111,8 @@ SPOT_ARM_CFG = ArticulationCfg(
             stiffness=ARM_STIFFNESS[3],
             damping=ARM_DAMPING[3],
             armature=ARM_ARMATURE[3],
-            min_delay=1,  # physics time steps (min: 5.0*1=5.0ms)
-            max_delay=2,  # physics time steps (max: 5.0*2=10.0ms)
+            min_delay=0,  # physics time steps (min: 5.0*1=5.0ms)
+            max_delay=3,  # physics time steps (max: 5.0*2=10.0ms)
         ),
         "spot_arm_wr0": DelayedPDActuatorCfg(
             joint_names_expr=["arm_wr0"],
@@ -120,8 +120,8 @@ SPOT_ARM_CFG = ArticulationCfg(
             stiffness=ARM_STIFFNESS[4],
             damping=ARM_DAMPING[4],
             armature=ARM_ARMATURE[4],
-            min_delay=1,  # physics time steps (min: 5.0*1=5.0ms)
-            max_delay=2,  # physics time steps (max: 5.0*2=10.0ms)
+            min_delay=0,  # physics time steps (min: 5.0*1=5.0ms)
+            max_delay=3,  # physics time steps (max: 5.0*2=10.0ms)
         ),
         "spot_arm_wr1": DelayedPDActuatorCfg(
             joint_names_expr=["arm_wr1"],
@@ -129,8 +129,8 @@ SPOT_ARM_CFG = ArticulationCfg(
             stiffness=ARM_STIFFNESS[5],
             damping=ARM_DAMPING[5],
             armature=ARM_ARMATURE[5],
-            min_delay=1,  # physics time steps (min: 5.0*1=5.0ms)
-            max_delay=2,  # physics time steps (max: 5.0*2=10.0ms)
+            min_delay=0,  # physics time steps (min: 5.0*1=5.0ms)
+            max_delay=3,  # physics time steps (max: 5.0*2=10.0ms)
         ),
         "spot_arm_f1x": DelayedPDActuatorCfg(
             joint_names_expr=["arm_f1x"],
@@ -138,8 +138,8 @@ SPOT_ARM_CFG = ArticulationCfg(
             stiffness=ARM_STIFFNESS[6],
             damping=ARM_DAMPING[6],
             armature=ARM_ARMATURE[6],
-            min_delay=1,  # physics time steps (min: 5.0*1=5.0ms)
-            max_delay=2,  # physics time steps (max: 5.0*2=10.0ms)
+            min_delay=0,  # physics time steps (min: 5.0*1=5.0ms)
+            max_delay=3,  # physics time steps (max: 5.0*2=10.0ms)
         ),
     },
 )
