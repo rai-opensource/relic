@@ -182,3 +182,6 @@ pre-commit = ">=4.3.0,<5"
 [tool.pixi.tasks]
 install-hooks = "pre-commit install"
 lint = "pre-commit run --all-files"
+
+[tool.pixi.activation.env]
+PYTHONNOUSERSITE = "1"
