@@ -75,3 +75,6 @@ We use RSL_RL for RL training and adapt the following scripts from [IsaacLabExte
 - `scripts/rsl_rl`
 - `source/relic/pyproject.toml`
 - `source/relic/setup.py`
+
+## Disclaimer
+This code is provided as a research prototype and is not production-quality software. Please note that the code may contain missing features and potential bugs. As part of this release, the RAI Institute does not offer maintenance or support for the software.
