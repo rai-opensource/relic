@@ -14,6 +14,9 @@ This repository contains the official implementation for the paper "Versatile Lo
 
 *Our ReLIC policy enables a quadruped robot to walk with three legs and manipulate with the arm and one leg.*
 
+NEWS: Discover how ReLIC enables autonomous, dynamic whole-body manipulation through a sampling-based optimizer:
+[**Blog Post**](https://rai-inst.com/resources/blog/combining-sampling-and-learning-for-dynamic-whole-body-manipulation/) | [**X**](https://x.com/rai_inst/status/1978113805604258161) | [**YouTube**](https://www.youtube.com/watch?v=nM_ZHzp8nQA)
+
 > **Disclaimer:** This code is released as a research prototype and is not intended for production use. It may contain incomplete features or bugs. The RAI Institute does not provide maintenance or support for this software. Contributions via pull requests are welcome.
 
 ## Overview
@@ -75,6 +78,3 @@ We use RSL_RL for RL training and adapt the following scripts from [IsaacLabExte
 - `scripts/rsl_rl`
 - `source/relic/pyproject.toml`
 - `source/relic/setup.py`
-
-## Disclaimer
-This code is provided as a research prototype and is not production-quality software. Please note that the code may contain missing features and potential bugs. As part of this release, the RAI Institute does not offer maintenance or support for the software.
