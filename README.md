@@ -14,6 +14,8 @@ This repository contains the official implementation for the paper "Versatile Lo
 
 *Our ReLIC policy enables a quadruped robot to walk with three legs and manipulate with the arm and one leg.*
 
+> **Disclaimer:** This code is released as a research prototype and is not intended for production use. It may contain incomplete features or bugs. The RAI Institute does not provide maintenance or support for this software. Contributions via pull requests are welcome.
+
 ## Overview
 
 **Reinforcement Learning for Interlimb Coordination (ReLIC)** is an approach that enables versatile loco-manipulation through flexible interlimb coordination. The core of our method is a single, adaptive controller that learns to seamlessly coordinate all of a robot's limbs. It intelligently bridges the execution of precise manipulation motions with the generation of stable, dynamic gaits, allowing the robot to interact with its environment in a versatile and robust manner.
@@ -73,6 +75,3 @@ We use RSL_RL for RL training and adapt the following scripts from [IsaacLabExte
 - `scripts/rsl_rl`
 - `source/relic/pyproject.toml`
 - `source/relic/setup.py`
-
-## Disclaimer
-This code is provided as a research prototype and is not production-quality software. Please note that the code may contain missing features and potential bugs. As part of this release, the RAI Institute does not offer maintenance or support for the software.
