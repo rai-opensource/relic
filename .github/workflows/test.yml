@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
     steps:
     - name: Checkout code
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
 
     - name: Set up Python
       uses: actions/setup-python@v6
@@ -32,14 +32,13 @@ jobs:
         python-version: "3.10"
 
     - name: Install pixi
-      uses: prefix-dev/setup-pixi@v0.9.0
+      uses: prefix-dev/setup-pixi@v0.9.4
       with:
-        pixi-version: v0.55.0
+        pixi-version: v0.62.2
         cache: true
         auth-host: prefix.dev
         auth-token: ${{ secrets.PREFIX_DEV_TOKEN }}
 
     - name: Build
       run: |
-        pixi install
         pixi install
