@@ -1,5 +1,8 @@
 # ReLIC: Reinforcement Learning for Interlimb Coordination
 
+> [!IMPORTANT]
+> This repository has moved from [`bdaiinstitute/relic`](https://github.com/bdaiinstitute/relic) to [`rai-opensource/relic`](https://github.com/rai-opensource/relic).
+
 [![IsaacSim](https://img.shields.io/badge/IsaacSim-4.5.0-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
 [![Isaac Lab](https://img.shields.io/badge/IsaacLab-2.1.0-silver)](https://isaac-sim.github.io/IsaacLab)
 [![Python](https://img.shields.io/badge/python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html)
